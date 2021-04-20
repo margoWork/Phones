@@ -1,0 +1,46 @@
+<template>
+    <template if:true={recordId} class="slds-p-around_medium">
+    <lightning-card icon-name="utility:phone_portrait">
+            <span slot="title">{productName}</span>
+            <lightning-button-icon
+                    icon-name="utility:expand_alt"
+                    slot="actions"
+                    onclick={handleNavigateToRecord}
+            ></lightning-button-icon>
+
+            <div class="slds-p-around_medium">
+                <img if:true={productImageURL}
+                     src={productImageURL}
+                     class="product"
+                     alt="Product picture"
+                />
+                <lightning-record-view-form
+                        record-id={recordId}
+                        object-api-name={objectApiName}
+                        onload={handleRecordLoaded}
+                        density="compact">
+                    <section>Phone Details</section>
+                    <lightning-output-field
+                            field-name={productName}
+                    ></lightning-output-field>
+                    <lightning-output-field
+                            field-name={productCode}
+                    ></lightning-output-field>
+                    <lightning-output-field
+                            field-name={productPrice}
+                    ></lightning-output-field>
+                    <lightning-output-field
+                            field-name={productFamily}
+                    ></lightning-output-field>
+                    <lightning-output-field
+                            field-name={productDescription}
+                    ></lightning-output-field>
+                </lightning-record-view-form>
+                <section>Phone Location</section>
+                <c-product-location
+                        record-id={recordId}
+                ></c-product-location>
+            </div>
+    </lightning-card>
+    </template>
+</template>

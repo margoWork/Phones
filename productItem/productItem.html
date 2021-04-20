@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title={product.Name}  class="slds-var-m-around_x-small">
+        <div class="slds-var-p-horizontal_small product-item-body slds-p-around_medium">
+            <a onclick={handleSelectedProduct}>
+                <div class="content">
+                    <img src={product.Image_URL__c}
+                         class="product slds-align_absolute-center"
+                         alt="Product picture"
+                    />
+                </div>
+            </a>
+        </div>
+    </lightning-card>
+</template>

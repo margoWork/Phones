@@ -1,0 +1,10 @@
+section > h1 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.filter{
+    margin-top: 100px;
+    margin-bottom: 300px;
+    padding-top: 300px;
+}

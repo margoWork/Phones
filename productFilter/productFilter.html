@@ -1,0 +1,23 @@
+<template>
+    <lightning-card class="filter" title="Filters" icon-name="standard:calibration">
+        <div class="slds-var-m-horizontal_medium">
+            <section>
+                <lightning-slider
+                        label="Price"
+                        step="100"
+                        min="2000"
+                        max="100000"
+                        value={maxPrice}
+                        onchange={handlePriceChange}
+                ></lightning-slider>
+            </section>
+            <section>
+                    <template if:true={families.data}>
+                        <lightning-combobox name="progress" label="Family" value={value}
+                                            options={families.data.values} onchange={handleFamilyChange}>
+                        </lightning-combobox>
+                    </template>
+            </section>
+        </div>
+    </lightning-card>
+</template>

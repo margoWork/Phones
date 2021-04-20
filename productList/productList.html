@@ -1,0 +1,22 @@
+<template>
+    <div class="slds-card slds-var-p-around_x-small">
+        <lightning-input
+                label="Search Name"
+                type="text"
+                onchange={handleSearchKeyChange}
+                class="search-bar"
+        ></lightning-input>
+            <template if:true={products}>
+                <lightning-layout multiple-rows="true" pull-to-boundary="small">
+                    <template for:each={products} for:item="product">
+                        <lightning-layout-item key={product.Id} size="3" class="slds-p-around_small">
+                            <c-product-item
+                                    product={product}
+                                    onselected={handleProductSelected}
+                            ></c-product-item>
+                        </lightning-layout-item>
+                    </template>
+                </lightning-layout>
+            </template>
+        </div>
+</template>

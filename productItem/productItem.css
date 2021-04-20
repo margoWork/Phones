@@ -1,0 +1,12 @@
+.product-item {
+    background: rgb(243, 242, 242);
+    min-width: 200px;
+    flex: 1;
+}
+
+img.product-img {
+    height: 120px;
+    max-width: initial;
+    pointer-events: none;
+    margin: 10px 5px 15px 20px;
+}
