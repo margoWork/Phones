@@ -25,13 +25,11 @@ export default class ProductFilter extends LightningElement {
     families;
 
   handleSearchKeyChange(event) {
-    console.log('SearchKey: ' + event.target.value);
     this.filters.searchKey = event.target.value;
     this.fireFiltersChangeEvent();
   }
 
   handlePriceChange(event) {
-      console.log('Selected Price: ' + event.target.value);
       if (event.detail) {
           this.filters.price = event.target.value;
           this.fireFiltersChangeEvent();
@@ -39,10 +37,8 @@ export default class ProductFilter extends LightningElement {
   }
 
   handleFamilyChange(event) {
-      console.log('Selected Family: ' + event.target.value);
       if (event.detail) {
         this.filters.family = event.target.value === "None" ? undefined : event.target.value;
-        console.log('Res Family: ' +  this.filters.family);
         this.fireFiltersChangeEvent();
       }
   }
