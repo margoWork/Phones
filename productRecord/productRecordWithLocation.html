@@ -1,6 +1,6 @@
 <template>
     <template if:true={recordId} class="slds-p-around_medium">
-        <lightning-card icon-name="utility:phone_portrait">
+    <lightning-card icon-name="utility:phone_portrait">
             <span slot="title">{productName}</span>
             <lightning-button-icon
                     icon-name="utility:expand_alt"
@@ -39,7 +39,11 @@
                             field-name={productRAM}
                     ></lightning-output-field>
                 </lightning-record-view-form>
+                <section>Phone Location</section>
+                <c-product-location
+                        record-id={recordId}
+                ></c-product-location>
             </div>
-        </lightning-card>
+    </lightning-card>
     </template>
 </template>

@@ -1,6 +1,8 @@
 import {LightningElement, wire, track} from 'lwc';
 
 import getProducts from '@salesforce/apex/ProductCtrl.getProducts';
+import getCurrencies from '@salesforce/apex/ProductCtrl.getCurrencies';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { fireEvent, registerListener, unregisterAllListeners } from 'c/pubsub';
 import { CurrentPageReference } from 'lightning/navigation';
 
@@ -8,9 +10,10 @@ export default class ProductList extends LightningElement {
       @wire(CurrentPageReference) pageRef;
 
       @track products;
-
       allProducts;
       filteredProducts;
+
+      currencies;
 
       filters = {
         searchKey: '',
@@ -24,7 +27,22 @@ export default class ProductList extends LightningElement {
             this.products = data;
             this.allProducts = data;
           } else if ( error ) {
-            this.products = undefined;
+              this.dispatchEvent(
+                  new ShowToastEvent({
+                    title: 'Error getting phones!',
+                    message: error.body.message,
+                    variant: 'error',
+                  }),
+              );
+          }
+      }
+
+      @wire( getCurrencies )
+      wiredCurrencies( { error, data } ) {
+          if (data) {
+            this.currencies = data;
+          } else if ( error ) {
+            this.currencies = undefined;
             console.log('Error get Products.');
           }
       }
@@ -86,10 +104,12 @@ export default class ProductList extends LightningElement {
           this.products = data;
       }
 
-
       handleProductSelected(event){
-          const productId = event.detail;
-          fireEvent(this.pageRef, "selectedproduct", productId);
+          const params = {
+            productId : event.detail,
+            withLocation: false
+          };
+          fireEvent(this.pageRef, "selectedproduct", params);
       }
 
 }
